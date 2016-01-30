@@ -4,7 +4,7 @@
   "description": "An isomorphic React blog",
   "main": "server.js",
   "scripts": {
-    "dev": "cp views/index.html public/index.html && NODE_ENV=development webpack && webpack-dev-server --content-base public/ --hot --inline --devtool inline-source-map --history-api-fallback",
+    "dev": "cp views/index.html public/index.html && NODE_ENV=development webpack && webpack-dev-server --hot --inline --history-api-fallback",
     "dev-info": "echo \"Copies view to public folder. Sets the content base for our webpack-dev-server to public/ and enables hot reloading\"",
     "production": "rm -rf public/index.html && NODE_ENV=production webpack -p && NODE_ENV=production node app.js",
     "start": "npm run production",

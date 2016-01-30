@@ -9,8 +9,9 @@ class App extends Component {
   }
   render(){
     return (
-      <div>
-        <h1>React Universal Blog</h1>
+      <div className="wrapper">
+        <header className="header">
+          <h1>React Universal Blog</h1>
            <nav>
               <ul>
                  <li><Link to="/">Home</Link></li>
@@ -19,6 +20,7 @@ class App extends Component {
                  <li><Link to="/contact">Contact</Link></li>
               </ul>
            </nav>
+        </header>
         { this.props.children }
       </div>
     )
@@ -29,7 +31,7 @@ class App extends Component {
 class Home extends Component {
   render(){
     return (
-      <div>
+      <div className="page page--home">
         <h2>Home</h2>
         <div>Some home page content</div>
       </div>
@@ -39,7 +41,7 @@ class Home extends Component {
 class About extends Component {
   render(){
     return (
-      <div>
+      <div className="page page--about">
         <h2>About</h2>
         <div>Some about page content</div>
       </div>
@@ -49,7 +51,7 @@ class About extends Component {
 class Work extends Component {
   render(){
     return (
-      <div>
+      <div className="page page--work">
         <h2>Work</h2>
         <div>Some work page content</div>
       </div>
@@ -59,7 +61,7 @@ class Work extends Component {
 class Contact extends Component {
   render(){
     return (
-      <div>
+      <div className="page page--contact">
         <h2>Contact</h2>
         <div>Some contact page content</div>
       </div>
@@ -69,7 +71,7 @@ class Contact extends Component {
 class NoMatch extends Component {
   render(){
     return (
-      <div>
+      <div className="page page--404">
         <h2>NoMatch</h2>
         <div>404 error</div>
       </div>
