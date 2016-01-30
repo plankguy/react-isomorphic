@@ -1,9 +1,9 @@
-// app-server.js
-import React from 'react'
-import { match, RoutingContext } from 'react-router'
-import ReactDOMServer from 'react-dom/server'
-import express from 'express'
-import hogan from 'hogan-express'
+//
+import React                      from 'react'
+import { match, RoutingContext }  from 'react-router'
+import { renderToString }         from 'react-dom/server'
+import express                    from 'express'
+import hogan                      from 'hogan-express'
 
 // Routes
 import routes from './routes'
@@ -20,8 +20,12 @@ app.get('*', (req, res) => {
 
   match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
     
-    const reactMarkup = ReactDOMServer.renderToStaticMarkup()
+    const InitialView = (
+      <RoutingContext {...renderProps} />
+    );
+    const reactMarkup = renderToString(InitialView);
     
+    // Pass to hogan template
     res.locals.reactMarkup = reactMarkup
 
     if (error) {
@@ -29,10 +33,8 @@ app.get('*', (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
-      
       // Success!
       res.status(200).render('index.html')
-    
     } else {
       res.status(404).render('index.html')
     }

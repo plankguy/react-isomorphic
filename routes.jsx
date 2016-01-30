@@ -1,6 +1,6 @@
 // routes to be shared between our server and client entry points
-import React, { Component } from 'react'
-import { Route, IndexRoute, Link } from 'react-router'
+import React, { Component }         from 'react'
+import { Route, IndexRoute, Link }  from 'react-router'
 
 // Main component
 class App extends Component {
