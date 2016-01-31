@@ -1,8 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
 var autoprefixer = require('autoprefixer');
+//import webpackDevMiddleware from 'webpack-dev-middleware';
 
-if(process.env.NODE_ENV === 'development') {
+var port = process.env.HOT_LOAD_PORT || 8080;
+
+if( process.env.NODE_ENV === 'dev' ) {
   var loaders = ['react-hot', 'babel'];
   var devtool = 'inline-source-map';
 } else {
@@ -11,20 +14,22 @@ if(process.env.NODE_ENV === 'development') {
 }
 module.exports = {
   cache: true,
-  //entry: './client.js',
   entry: [
-    // 'webpack-dev-server/client?http://localhost:8080', 
-    // 'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:' + port,
+    'webpack/hot/only-dev-server', // `only-` prevents reload on syntax errors // or CLI --inline --hot
+    // 'webpack-hot-middleware/client', // Need??
     './client.js',
   ],
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'public', 'dist'),
-    publicPath: path.join(__dirname, 'dist')
+    publicPath: 'http://localhost:' + port + '/public/'
   },
   devtool: devtool,
   devServer: {
+    hot: true,
     contentBase: path.join(__dirname, "public"),
+    historyApiFallback: true
   },
   sassLoader: {
     includePaths: [path.resolve(__dirname, "./static/scss")],
@@ -38,6 +43,7 @@ module.exports = {
       {
         test: /\.js$|\.jsx$/,
         loaders: loaders,
+        include: path.join(__dirname), // TO DO: add `src` once moved
         exclude: /node_modules/
       },
       {
@@ -51,8 +57,9 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    //new webpack.NoErrorsPlugin() // Need??
   ],
   resolve: {
     extensions: ['', '.react.js', '.js', '.jsx', '.json', '.scss', '.png', '.jpg', '.jpeg', '.gif', '.svg'],
