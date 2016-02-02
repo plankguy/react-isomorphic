@@ -7,24 +7,6 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>{{ site.title }}{{# page }} | {{ page.title }}{{/ page }}</title>
-  <style>
-  .hidden {
-    display: none;
-  }
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  nav ul li {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-  }
-  nav ul li + li {
-    margin-left: 20px;
-  }
-  </style>
 </head>
 <body class="hidden">
   <div id="app">{{{ reactMarkup }}}</div>

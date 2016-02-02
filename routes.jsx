@@ -2,12 +2,15 @@
 import React, { Component }         from 'react'
 import { Route, IndexRoute, Link }  from 'react-router'
 
+import Home from './src/components/Home'
+import styles from './src/static/scss/base.scss';
+
 // Main component
 class App extends Component {
-  componentDidMount(){
+  componentDidMount() {
     document.body.className = ''
   }
-  render(){
+  render() {
     return (
       <div className="wrapper">
         <header className="header">
@@ -28,18 +31,8 @@ class App extends Component {
 }
 
 // Pages
-class Home extends Component {
-  render(){
-    return (
-      <div className="page page--home">
-        <h2>Home</h2>
-        <div>Some home page content</div>
-      </div>
-    )
-  }
-}
 class About extends Component {
-  render(){
+  render() {
     return (
       <div className="page page--about">
         <h2>About</h2>
@@ -49,7 +42,7 @@ class About extends Component {
   }
 }
 class Work extends Component {
-  render(){
+  render() {
     return (
       <div className="page page--work">
         <h2>Work</h2>
@@ -59,7 +52,7 @@ class Work extends Component {
   }
 }
 class Contact extends Component {
-  render(){
+  render() {
     return (
       <div className="page page--contact">
         <h2>Contact</h2>
@@ -69,7 +62,7 @@ class Contact extends Component {
   }
 }
 class NoMatch extends Component {
-  render(){
+  render() {
     return (
       <div className="page page--404">
         <h2>NoMatch</h2>
