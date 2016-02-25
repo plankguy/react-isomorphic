@@ -2,8 +2,13 @@
 import React, { Component }         from 'react'
 import { Route, IndexRoute, Link }  from 'react-router'
 
-import Home from './src/components/Home'
-import styles from './src/static/scss/base.scss';
+//import styles from './src/static/scss/base.scss';
+
+import Home     from './src/components/Home'
+import About    from './src/components/About'
+import Work     from './src/components/Work'
+import Contact  from './src/components/Contact'
+import NotFound from './src/components/NotFound'
 
 // Main component
 class App extends Component {
@@ -30,54 +35,12 @@ class App extends Component {
   }
 }
 
-// Pages
-class About extends Component {
-  render() {
-    return (
-      <div className="page page--about">
-        <h2>About</h2>
-        <div>Some about page content</div>
-      </div>
-    )
-  }
-}
-class Work extends Component {
-  render() {
-    return (
-      <div className="page page--work">
-        <h2>Work</h2>
-        <div>Some work page content</div>
-      </div>
-    )
-  }
-}
-class Contact extends Component {
-  render() {
-    return (
-      <div className="page page--contact">
-        <h2>Contact</h2>
-        <div>Some contact page content</div>
-      </div>
-    )
-  }
-}
-class NoMatch extends Component {
-  render() {
-    return (
-      <div className="page page--404">
-        <h2>NoMatch</h2>
-        <div>404 error</div>
-      </div>
-    )
-  }
-}
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
     <Route path="about" component={About}/>
     <Route path="work" component={Work}/>
     <Route path="contact" component={Contact}/>
-    <Route path="*" component={NoMatch}/>
+    <Route path="*" component={NotFound}/>
   </Route>
 )
